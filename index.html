@@ -23,6 +23,7 @@
             background: 0 0 !important;
             padding: 0 !important
         }
+      
 
         :where(.wp-block-button__link) {
             border-radius: 9999px;
@@ -249,6 +250,30 @@
         #outdated.fullscreen {
             height: 100%
         }
+          .footer-content {
+    /* Your existing styling for the footer content */
+    text-align: center; /* Center align the content within the footer */
+}
+
+.footer-links {
+    list-style: none; /* Remove default list bullets */
+    padding: 0;
+    display: inline-block; /* Make the list items inline */
+}
+
+.footer-links li {
+    display: inline-block; /* Display list items inline */
+    margin: 0 15px; /* Add space between list items */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333; /* Adjust link color */
+    font-weight: bold; /* Make links more prominent */
+    font-family: "Courier New", monospace; 
+    font-size: 25px; 
+}
+
 
         #outdated .vertical-center {
             display: table-cell;
@@ -6722,7 +6747,22 @@
         </symbol>
     </svg>
 
-
+<footer class="relative s-margin-top s-padding !pb-8 bg-gradient-to-tr from-green-light via-green to-green-dark text-black" data-scroll-section>
+        <div class="footer-content">
+            <!-- Other footer content here -->
+            <ul class="footer-links">
+                <li><a href="#">Home</a></li> • 
+                <li><a href="#about">About Me</a></li> • 
+                <li><a href="#project">Recent Projects</a></li> • 
+                <li><a href="#exp">Experience</a></li> • 
+                
+                <li><a href="work.html">Work Profile</a></li> 
+            </ul>
+        </div>
+    <center><i>
+            <p style="font-family: 'Courier New', Courier, monospace;">&copy; 2023 • Rishabh Mishra</p></i>
+          </center>
+    </footer>
     
     <script type='text/javascript' id='rocket-browser-checker-js-after'>
         "use strict"; var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor) } } return function (Constructor, protoProps, staticProps) { return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), Constructor } }(); function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function") } var RocketBrowserCompatibilityChecker = function () { function RocketBrowserCompatibilityChecker(options) { _classCallCheck(this, RocketBrowserCompatibilityChecker), this.passiveSupported = !1, this._checkPassiveOption(this), this.options = !!this.passiveSupported && options } return _createClass(RocketBrowserCompatibilityChecker, [{ key: "_checkPassiveOption", value: function (self) { try { var options = { get passive() { return !(self.passiveSupported = !0) } }; window.addEventListener("test", null, options), window.removeEventListener("test", null, options) } catch (err) { self.passiveSupported = !1 } } }, { key: "initRequestIdleCallback", value: function () { !1 in window && (window.requestIdleCallback = function (cb) { var start = Date.now(); return setTimeout(function () { cb({ didTimeout: !1, timeRemaining: function () { return Math.max(0, 50 - (Date.now() - start)) } }) }, 1) }), !1 in window && (window.cancelIdleCallback = function (id) { return clearTimeout(id) }) } }, { key: "isDataSaverModeOn", value: function () { return "connection" in navigator && !0 === navigator.connection.saveData } }, { key: "supportsLinkPrefetch", value: function () { var elem = document.createElement("link"); return elem.relList && elem.relList.supports && elem.relList.supports("prefetch") && window.IntersectionObserver && "isIntersecting" in IntersectionObserverEntry.prototype } }, { key: "isSlowConnection", value: function () { return "connection" in navigator && "effectiveType" in navigator.connection && ("2g" === navigator.connection.effectiveType || "slow-2g" === navigator.connection.effectiveType) } }]), RocketBrowserCompatibilityChecker }();
