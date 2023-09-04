@@ -414,10 +414,63 @@ main > article .yt-link > i {
   display: inline;
 }
     </style>
+    <style>
+        /* Loader styles */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    position: relative;
+    animation: spin 2s linear infinite;
+}
+
+.loader-progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3498db;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hide loader when content is loaded */
+.loaded .loader-wrapper {
+    display: none;
+}
+
+    </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </head>
-<body>
+<body><div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-progress" id="loader-progress">0%</div>
+        </div>
+    </div>
+
+    <!-- Your website content goes here -->
+    <div class="content">
     
     <nav data-toggled="false" data-transitionable="false">
   <div id="nav-logo-section" class="nav-section">
@@ -559,7 +612,7 @@ main > article .yt-link > i {
     </div>
   </article>
 
-</main>
+</main></div>
 <script>
     /* -- Carousel Navigation -- */
 
@@ -599,6 +652,27 @@ const handleRightClick = () => {
   });
 }
 
+    // Wait for the page to fully load
+window.addEventListener("load", function () {
+    // Get the loader elements
+    const loaderWrapper = document.querySelector(".loader-wrapper");
+    const loaderProgress = document.getElementById("loader-progress");
+
+    // Simulate content loading (you should replace this with your actual loading logic)
+    let progress = 0;
+    const interval = setInterval(function () {
+        progress += 5;
+        if (progress <= 100) {
+            loaderProgress.textContent = progress + "%";
+        } else {
+            clearInterval(interval);
+            // Hide the loader when content is fully loaded
+            loaderWrapper.parentElement.classList.add("loaded");
+        }
+    }, 100); // Adjust the interval and loading logic as needed
+});
+
+    
 /* -- Mobile Nav Toggle -- */
 
 const nav = document.querySelector("nav");
