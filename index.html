@@ -4873,6 +4873,29 @@ h6 > .magic > .magic-text {
 </head>
 
 <body class="home page-template-default page page-id-110 no-sidebar">
+  <div id="video-container">
+        <video id="video-element" autoplay muted disablePictureInPicture>
+          <source src="intro.mp4" type="video/mp4">
+        </video>
+      </div>
+      <script>
+        var videoElement = document.getElementById('video-element');
+        var hasPlayed = sessionStorage.getItem('hasPlayed');
+    
+        if (!hasPlayed) {
+          videoElement.play();
+          sessionStorage.setItem('hasPlayed', true);
+        } else {
+          document.getElementById('video-container').style.display = 'none';
+        }
+    
+        videoElement.playbackRate = 1.25; // Set playback rate to 2x
+    
+        // Hide the video container and show the rest of the webpage once the video has ended
+        videoElement.addEventListener('ended', function () {
+          document.getElementById('video-container').style.display = 'none';
+        });
+      </script>
     
     
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJVJWV3" height="0" width="0"
