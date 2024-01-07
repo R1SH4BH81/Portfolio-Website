@@ -5652,63 +5652,69 @@ function(t,e){"object"==typeof module&&module.exports?module.exports=e(t,require
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fira-code@5.2.0/distr/fira_code.css">
 <script>
-        // Check if the viewCount key exists in localStorage
-        if (!localStorage.getItem('viewCount')) {
-          // If not, create the viewCount key and set its initial value to 0
-          localStorage.setItem('viewCount', '0');
-        }
-      
-        var count = parseInt(localStorage.getItem('viewCount'));
-      
-        // Increment the view count by 1
-        count++;
-        localStorage.setItem('viewCount', count.toString());
-      
-        console.log('ignore: ', count);
-      
-        // Store timestamp for every visit
-        var visitTimestamps = JSON.parse(localStorage.getItem('visitTimestamps')) || [];
-        visitTimestamps.push(new Date().toLocaleString());
-        localStorage.setItem('visitTimestamps', JSON.stringify(visitTimestamps));
-      
-        // Event listener for keydown
-        window.addEventListener('keydown', function(event) {
-          // Check if Shift and F5 keys are pressed simultaneously
-          if (event.shiftKey && event.key.toLowerCase() === 't') {
-            // Show view count and visit timestamps in a sweet alert message
-            Swal.fire({
-              title: 'View Count and Visit Timestamps',
-              text: 'The current view count is: ' + count + '\nVisit at\n' + visitTimestamps.join('\n'),
-              icon: 'info'
-            });
-          }
-        });
-      
-        document.title = "Rishabh's Portfolio";
-      
-        let index = 0,
-            interval = 1000;
-      
-        const rand = (min, max) =>
-          Math.floor(Math.random() * (max - min + 1)) + min;
-      
-        const animate = star => {
-          star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
-          star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
-      
-          star.style.animation = "none";
-          star.offsetHeight;
-          star.style.animation = "";
-        }
-      
-        for (const star of document.getElementsByClassName("magic-star")) {
-          setTimeout(() => {
-            animate(star);
-      
-            setInterval(() => animate(star), 1000);
-          }, index++ * (interval / 3))
-        }
-      </script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+  // Check if the viewCount key exists in localStorage
+  if (!localStorage.getItem('viewCount')) {
+    // If not, create the viewCount key and set its initial value to 0
+    localStorage.setItem('viewCount', '0');
+  }
+
+  var count = parseInt(localStorage.getItem('viewCount'));
+
+  // Increment the view count by 1
+  count++;
+  localStorage.setItem('viewCount', count.toString());
+
+  console.log('ignore: ', count);
+
+  // Store timestamp for every visit
+  var visitTimestamps = JSON.parse(localStorage.getItem('visitTimestamps')) || [];
+  visitTimestamps.push(new Date().toLocaleString());
+  localStorage.setItem('visitTimestamps', JSON.stringify(visitTimestamps));
+
+  // Get the current time in 24-hour format
+  var currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
+
+  // Event listener for keydown
+  window.addEventListener('keydown', function(event) {
+    // Check if Shift and T keys are pressed simultaneously
+    if (event.shiftKey && event.key.toLowerCase() === 't') {
+      // Show view count, current time, and visit timestamps in a sweet alert message
+      Swal.fire({
+        title: 'View Count, Current Time, and Visit Timestamps',
+        text: 'The current view count is: ' + count +
+              '\nCurrent Time: ' + currentTime +
+              '\nVisit Timestamps:\n' + visitTimestamps.join('\n'),
+        icon: 'info'
+      });
+    }
+  });
+
+  document.title = "Rishabh's Portfolio";
+
+  let index = 0,
+      interval = 1000;
+
+  const rand = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+  const animate = star => {
+    star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
+    star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
+
+    star.style.animation = "none";
+    star.offsetHeight;
+    star.style.animation = "";
+  }
+
+  for (const star of document.getElementsByClassName("magic-star")) {
+    setTimeout(() => {
+      animate(star);
+
+      setInterval(() => animate(star), 1000);
+    }, index++ * (interval / 3))
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     
     
    
